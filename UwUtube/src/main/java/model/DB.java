@@ -292,10 +292,10 @@ public class DB {
     // upload video and return id
     public int UploadVideo(video video){
         entityManager.getTransaction().begin();
-        entityManager.persist(video);
         Query video_max_id_query = entityManager.createNamedQuery("get max id");
         int video_max_id = (int) video_max_id_query.getSingleResult();
         video.setFile_name("Uwutube-Content/" + video_max_id + ".mp4");
+        entityManager.persist(video);
         entityManager.getTransaction().commit();
         return video_max_id;
     }
